@@ -1,25 +1,8 @@
-
-page.tsx
-
-
-export default function Home() {
-  return (
-    <main>
-      <h1>Comercializadora Sagitario</h1>
-      <p>Sitio web en construcción.</p>
-    </main>
-  );
-}
-
-
-
-layout.tsx
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Tarjeta Digital | THE GENTLEMAN'S CUT</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@5.0.0/index.min.css">
@@ -42,7 +25,6 @@ layout.tsx
                     },
                     animation: {
                         'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         fadeInUp: {
@@ -65,7 +47,7 @@ layout.tsx
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem;
+            padding: 1rem; /* Espacio seguro en móviles */
         }
         .glass-card {
             background: rgba(15, 5, 24, 0.75);
@@ -73,6 +55,8 @@ layout.tsx
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+            width: 100%;
+            max-width: 420px; /* Ancho máximo ideal para tarjetas */
         }
         .gradient-text {
             background: linear-gradient(to right, #a78bfa, #60a5fa, #f87171);
@@ -101,12 +85,17 @@ layout.tsx
             padding: 3px;
             border-radius: 9999px;
         }
+        /* Ajustes finos para pantallas muy pequeñas */
+        @media (max-width: 380px) {
+            h1 { font-size: 1.75rem !important; }
+            .glass-card { padding: 1.5rem !important; }
+        }
     </style>
 </head>
 <body>
 
-    <main class="w-full max-w-md animate-fade-in-up">
-        <div class="glass-card rounded-3xl p-8 relative overflow-hidden">
+    <main class="w-full flex justify-center animate-fade-in-up">
+        <div class="glass-card rounded-3xl p-6 md:p-8 relative overflow-hidden mx-auto">
             
             <!-- Top Accent Line -->
             <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-royal-purple via-royal-blue to-royal-red"></div>
@@ -119,23 +108,23 @@ layout.tsx
                         <img 
                             src="https://image.qwenlm.ai/public_source/ed44f989-25ee-4299-8859-a7747872a131/1eff01ef5-f50c-4838-a994-5991678e9ea3.png" 
                             alt="Barbero Profesional" 
-                            class="w-28 h-28 rounded-full object-cover border-2 border-black"
+                            class="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover border-2 border-black"
                         >
                     </div>
                 </div>
                 
-                <h1 class="font-serif text-3xl gradient-text mb-1 tracking-wide">
+                <h1 class="font-serif text-2xl md:text-3xl gradient-text mb-1 tracking-wide px-2">
                     The Gentleman's Cut
                 </h1>
-                <p class="text-gray-400 text-xs font-medium tracking-[0.2em] uppercase">
+                <p class="text-gray-400 text-[10px] md:text-xs font-medium tracking-[0.2em] uppercase">
                     Barbería de Lujo & Estilo
                 </p>
             </div>
 
             <!-- Contact Info Grid -->
             <div class="grid grid-cols-1 gap-3 mb-8">
-                <!-- CAMBIAR AQUÍ: Tu número de WhatsApp (código país + número sin espacios) -->
-                <a href="https://wa.me/5215512345678" target="_blank" class="btn-luxury py-3.5 px-4 rounded-xl flex items-center justify-center gap-3 text-sm font-semibold group">
+                <!-- CAMBIAR AQUÍ: Tu número de WhatsApp -->
+                <a href="https://wa.me/5215512345678" target="_blank" class="btn-luxury py-3.5 px-4 rounded-xl flex items-center justify-center gap-3 text-sm font-semibold group shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
                     </svg>
@@ -144,24 +133,24 @@ layout.tsx
                 
                 <div class="flex gap-3">
                     <!-- CAMBIAR AQUÍ: Tu dirección real en el href de Google Maps -->
-                    <a href="https://www.google.com/maps/search/?api=1&query=Av.+Reforma+123,+Ciudad+de+Mexico" target="_blank" class="flex-1 bg-white/5 hover:bg-white/10 border border-white/10 py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-xs text-gray-300 transition-all no-underline">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                        Ver Mapa
+                    <a href="https://www.google.com/maps/search/?api=1&query=Av.+Reforma+123,+Ciudad+de+Mexico" target="_blank" class="flex-1 bg-white/5 hover:bg-white/10 border border-white/10 py-3 px-2 rounded-xl flex items-center justify-center gap-2 text-xs text-gray-300 transition-all no-underline">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                        <span class="truncate">Ver Mapa</span>
                     </a>
                     
                     <!-- CAMBIAR AQUÍ: Tu número de teléfono para llamar -->
-                    <a href="tel:+5215512345678" class="flex-1 bg-white/5 hover:bg-white/10 border border-white/10 py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-xs text-gray-300 transition-all no-underline">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                        Llamar
+                    <a href="tel:+5215512345678" class="flex-1 bg-white/5 hover:bg-white/10 border border-white/10 py-3 px-2 rounded-xl flex items-center justify-center gap-2 text-xs text-gray-300 transition-all no-underline">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                        <span class="truncate">Llamar</span>
                     </a>
                 </div>
             </div>
 
             <!-- Services Section -->
             <div class="mb-8">
-                <h3 class="font-serif text-lg text-white mb-4 flex items-center gap-2">
+                <h3 class="font-serif text-lg text-white mb-4 flex items-center gap-2 justify-center">
                     <span class="w-8 h-[1px] bg-gradient-to-r from-transparent to-royal-purple"></span>
-                    Nuestros Servicios
+                    Servicios
                     <span class="w-8 h-[1px] bg-gradient-to-l from-transparent to-royal-red"></span>
                 </h3>
                 <div class="space-y-3 text-sm">
